@@ -51,12 +51,14 @@ h2("Experience");
 h3("Backend Developer (Node.js)", "Arobuz Growth Agency  •  Current");
 doc.moveDown(0.2);
 [
-  "Developed and maintained scalable backend services using Node.js and NestJS for SaaS applications.",
-  "Built RESTful APIs for authentication, user management, and core business logic.",
-  "Implemented secure JWT and OAuth authentication, improving access control and security.",
-  "Contributed to microservices-based architecture for modular, independently deployable services.",
-  "Integrated MongoDB and MySQL for efficient data storage and retrieval.",
-  "Containerized backend services using Docker for consistent deployments.",
+  "Architected and shipped backend services in Node.js and NestJS for SaaS products, exposing 10+ RESTful APIs across authentication, user management, and core business workflows.",
+  "Designed and implemented a data scraping pipeline that aggregates social media signals (profiles, posts, trends) from multiple sources, normalizing them into a unified schema for downstream analysis.",
+  "Built a Twitter-focused trend analysis service that processes scraped data to surface emerging topics, hashtags, and engagement patterns through queryable APIs.",
+  "Developed a profile and trend management system with CRUD APIs, tagging, and historical tracking, backed by MongoDB for flexible schemas and MySQL for relational entities.",
+  "Built a CRM backend for managing users, leads, and interaction history, including pipeline-stage APIs and activity timelines consumed by internal dashboards.",
+  "Integrated AI-driven analysis (LLM APIs) on collected data to generate trend summaries, content insights, and lead-qualification signals, with caching to control cost and latency.",
+  "Implemented role-based access control (RBAC) and JWT/OAuth authentication across services, enforcing fine-grained permissions for admins, analysts, and CRM users.",
+  "Containerized services with Docker and contributed to a microservices architecture for independent deployment of scraping, analysis, CRM, and auth modules.",
 ].forEach(bullet);
 
 doc.moveDown(0.4);
