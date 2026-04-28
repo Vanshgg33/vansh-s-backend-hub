@@ -38,7 +38,7 @@ doc.font("Helvetica").fontSize(9).fillColor(MUTED)
   .text("jaiswalvansh96@gmail.com  •  +91 7249782852  •  Nagpur, Maharashtra  •  github.com/Vanshgg33");
 
 h2("Professional Summary");
-body("Backend Developer specializing in Node.js, RESTful APIs, and scalable backend systems. Hands-on experience building SaaS applications with a strong focus on JWT/OAuth authentication, microservices architecture, and secure API design. Skilled in Node.js, NestJS, MongoDB, MySQL, and Docker-based deployments.");
+body("Backend Developer with experience designing scalable microservices using Node.js and NestJS, specializing in REST API development, authentication systems (JWT/OAuth), and high-performance backend architectures. Experienced in Dockerized deployments, data pipelines, and AI-integrated systems.");
 
 h2("Technical Skills");
 body("Backend: Node.js, NestJS, REST APIs, JWT, OAuth, Microservices");
@@ -51,14 +51,13 @@ h2("Experience");
 h3("Backend Developer (Node.js)", "Arobuz Growth Agency  •  Current");
 doc.moveDown(0.2);
 [
-  "Architected and shipped backend services in Node.js and NestJS for SaaS products, exposing 10+ RESTful APIs across authentication, user management, and core business workflows.",
-  "Designed and implemented a data scraping pipeline that aggregates social media signals (profiles, posts, trends) from multiple sources, normalizing them into a unified schema for downstream analysis.",
-  "Built a Twitter-focused trend analysis service that processes scraped data to surface emerging topics, hashtags, and engagement patterns through queryable APIs.",
-  "Developed a profile and trend management system with CRUD APIs, tagging, and historical tracking, backed by MongoDB for flexible schemas and MySQL for relational entities.",
-  "Built a CRM backend for managing users, leads, and interaction history, including pipeline-stage APIs and activity timelines consumed by internal dashboards.",
-  "Integrated AI-driven analysis (LLM APIs) on collected data to generate trend summaries, content insights, and lead-qualification signals, with caching to control cost and latency.",
-  "Implemented role-based access control (RBAC) and JWT/OAuth authentication across services, enforcing fine-grained permissions for admins, analysts, and CRM users.",
-  "Containerized services with Docker and contributed to a microservices architecture for independent deployment of scraping, analysis, CRM, and auth modules.",
+  "Designed and developed an end-to-end CRM backend system managing users, leads, pipelines, and interaction history, with scalable REST APIs and RBAC; integrated AI-powered proposal generation using Gemini APIs and a rich text editor for dynamic content creation.",
+  "Built a high-performance web scraping engine capable of extracting data from multiple platforms, including social media sources, using API integrations and structured data pipelines.",
+  "Engineered a social media data aggregation system that collects and normalizes profiles, posts, and engagement signals into a unified schema for analytics.",
+  "Developed a Twitter trend analysis engine to identify emerging topics, hashtags, and engagement patterns through optimized APIs.",
+  "Architected and shipped backend services in Node.js and NestJS for SaaS products, exposing 10+ RESTful APIs across authentication, user management, and core workflows.",
+  "Implemented role-based access control (RBAC) and JWT/OAuth authentication across services.",
+  "Containerized services using Docker within a microservices architecture.",
 ].forEach(bullet);
 
 doc.moveDown(0.4);
@@ -71,20 +70,20 @@ doc.moveDown(0.2);
 ].forEach(bullet);
 
 h2("Projects");
-h3("WhatsApp Commerce Backend System (NestJS)  ★");
+h3("WhatsApp Commerce Backend System (NestJS)");
 [
-  "Backend-driven WhatsApp commerce platform for orders, inventory, and customer interactions.",
-  "Implemented role-based access control (RBAC) for packer, biller, and delivery roles.",
-  "Built inventory management APIs with real-time stock tracking and Meta Catalog sync.",
-  "Integrated WhatsApp Business workflows for order confirmation and instant billing.",
+  "Designed a WhatsApp-first commerce platform enabling users to browse products, place orders, and receive confirmations entirely through WhatsApp Business workflows.",
+  "Built conversational order flows (catalog browsing, cart creation, order placement, and status updates) integrated with WhatsApp Business APIs.",
+  "Developed backend services for order processing, inventory management, and customer interactions with real-time stock tracking and Meta Catalog sync.",
+  "Implemented RBAC for packer, biller, and delivery roles, supporting end-to-end fulfillment operations.",
+  "Created event-driven APIs for order lifecycle management (creation, confirmation, billing, dispatch) with webhook integrations for real-time notifications.",
 ].forEach(bullet);
 
 doc.moveDown(0.3);
 h3("Restaurant Management & Ordering System");
 [
   "Backend APIs for order processing, menu management, and admin operations.",
-  "KOT (Kitchen Order Ticket) system for streamlined kitchen workflows.",
-  "Live: rangeeladhaba.in",
+  "KOT (Kitchen Order Ticket) system for kitchen workflows.",
 ].forEach(bullet);
 
 doc.moveDown(0.3);
@@ -92,8 +91,13 @@ h3("Card Management System");
 bullet("Secure backend with Spring Boot, REST APIs, and MySQL integration.");
 
 doc.moveDown(0.3);
-h3("Medical Diagnostic Center Application");
-bullet("Spring Boot backend with secure API endpoints for patient data management.");
+h3("Unified Admin Dashboard (Commerce & CRM)");
+[
+  "Developed a unified frontend dashboard for managing orders, inventory, and customer interactions across the platform.",
+  "Built real-time order monitoring and stock management interfaces for operational efficiency.",
+  "Implemented a chat system to communicate with users, view conversation history, and access previous orders within a single interface.",
+  "Integrated backend APIs to provide a centralized view of customer data, order history, and engagement insights.",
+].forEach(bullet);
 
 h2("Education");
 h3("Bachelor of Computer Applications (BCA)", "Manipal University Jaipur  •  Expected 2026");
