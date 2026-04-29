@@ -1,5 +1,6 @@
 import { SectionHeading } from "@/components/section-heading";
-import { Star, ExternalLink, Folder } from "lucide-react";
+import { TiltCard } from "@/components/tilt-card";
+import { Star, ExternalLink, Folder, ArrowUpRight } from "lucide-react";
 
 type Project = {
   title: string;
@@ -7,88 +8,112 @@ type Project = {
   stack: string[];
   featured?: boolean;
   link?: string;
+  index: string;
 };
 
 const projects: Project[] = [
   {
-    title: "WhatsApp Commerce Backend System",
+    index: "001",
+    title: "WhatsApp Commerce — Bot + Dashboard",
     description:
-      "Backend-driven WhatsApp commerce platform with RBAC for packer/biller/delivery roles, real-time inventory APIs, Meta Catalog sync, and instant billing through WhatsApp Business workflows.",
-    stack: ["NestJS", "Node.js", "MongoDB", "RBAC", "WhatsApp API"],
+      "End-to-end WhatsApp store: a customer-facing WhatsApp bot wired to an admin dashboard where the entire business runs. The bot handles product browsing, ordering, and instant billing inside chat; the dashboard exposes a unified inbox for every customer thread — admins can read, reply, and triage live conversations from one place. Stock management is fully centralized: real-time inventory sync, product catalog, coupons, banners, and pricing all flow from the dashboard back to the bot. RBAC separates packer / biller / delivery roles, Meta Catalog stays in sync automatically, and order lifecycle events fire back to customers over WhatsApp the moment status changes.",
+    stack: ["NestJS", "Node.js", "MongoDB", "WhatsApp Cloud API", "Meta Catalog", "RBAC", "JWT"],
     featured: true,
   },
   {
-    title: "Restaurant Management & Ordering",
+    index: "002",
+    title: "Rangeela Dhaba — Restaurant & Ordering",
     description:
-      "End-to-end restaurant system with order processing APIs, admin dashboard, and a KOT (Kitchen Order Ticket) system for streamlined kitchen workflows.",
-    stack: ["Node.js", "REST APIs", "MySQL"],
+      "Full-stack restaurant management system with order processing, KOT (Kitchen Order Ticket) workflow, admin dashboard for products / coupons / banners, RBAC, JWT auth, and analytics for orders and user activity.",
+    stack: ["NestJS", "React", "MongoDB", "JWT", "RBAC"],
     link: "https://www.rangeeladhaba.in/",
-  },
-  {
-    title: "Card Management System",
-    description:
-      "Secure backend system for managing card-related data with authentication, MySQL integration, and clean REST API design.",
-    stack: ["Spring Boot", "REST APIs", "MySQL"],
-  },
-  {
-    title: "Medical Diagnostic Center App",
-    description:
-      "Backend services managing diagnostic center operations with secure API endpoints and patient data handling.",
-    stack: ["Spring Boot", "REST APIs", "MySQL"],
   },
 ];
 
 export function Projects() {
   return (
-    <section id="projects" className="py-24 scroll-mt-16 bg-muted/30">
+    <section id="projects" className="relative py-28 scroll-mt-16 scene-3d">
       <div className="container-narrow">
         <SectionHeading
-          eyebrow="04 — Projects"
-          title="Selected work"
+          eyebrow="04 / projects"
+          title="Selected work."
           description="A focus on backend systems, secure APIs, and real-world integrations."
         />
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5" style={{ perspective: "1300px" }}>
           {projects.map((p) => (
-            <article
+            <TiltCard
               key={p.title}
-              className={`group relative flex flex-col rounded-2xl border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-xl ${
+              intensity={p.featured ? 7 : 10}
+              className={`group flex flex-col rounded-2xl p-7 transition-colors ${
                 p.featured
-                  ? "border-primary/40 glow-ring md:col-span-2"
-                  : "border-border hover:border-primary/30"
+                  ? "md:col-span-2 border border-primary/40 bg-card glow-ring"
+                  : "border border-border bg-card hover:border-primary/30"
               }`}
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="grid size-10 place-items-center rounded-lg bg-primary/10 text-primary">
+              {p.featured && (
+                <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 rounded-full border border-warm/40 bg-warm/[0.06] px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-warm">
+                  <span className="size-1 rounded-full bg-warm animate-pulse" />
+                  flagship
+                </span>
+              )}
+
+              <div className="flex items-start gap-4">
+                <div
+                  className="grid size-12 place-items-center rounded-xl border border-primary/30 bg-primary/[0.07] text-primary preserve-3d"
+                  style={{
+                    transform: "translateZ(20px)",
+                    boxShadow: "inset 0 0 24px color-mix(in oklab, var(--color-primary) 18%, transparent)",
+                  }}
+                >
                   {p.featured ? <Star className="size-5 fill-primary" /> : <Folder className="size-5" />}
+                </div>
+                <div className="flex-1">
+                  <p className="chip-mono text-muted-foreground">project — {p.index}</p>
+                  <h3 className="mt-1 font-display text-xl font-semibold text-foreground leading-tight">
+                    {p.title}
+                  </h3>
                 </div>
                 {p.link && (
                   <a
                     href={p.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="grid size-9 place-items-center rounded-full border border-border bg-background/40 text-muted-foreground transition-all hover:text-primary hover:border-primary/60 hover:-translate-y-0.5 hover:rotate-12"
                     aria-label="Visit project"
                   >
-                    <ExternalLink className="size-4" />
+                    <ArrowUpRight className="size-4" />
                   </a>
                 )}
               </div>
-              <h3 className="mt-4 text-lg font-semibold">{p.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">
+
+              <p className="mt-5 text-sm text-muted-foreground leading-relaxed flex-1">
                 {p.description}
               </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {p.stack.map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-md bg-background border border-border px-2.5 py-1 text-xs font-mono text-muted-foreground"
+
+              <div className="mt-6 flex items-center justify-between gap-4">
+                <div className="flex flex-wrap gap-1.5">
+                  {p.stack.map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-md border border-border bg-background/40 px-2.5 py-1 text-[11px] font-mono text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                {p.link && (
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hidden lg:inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity"
                   >
-                    {s}
-                  </span>
-                ))}
+                    visit <ExternalLink className="size-3" />
+                  </a>
+                )}
               </div>
-            </article>
+            </TiltCard>
           ))}
         </div>
       </div>
