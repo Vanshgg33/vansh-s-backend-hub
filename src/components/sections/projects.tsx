@@ -28,6 +28,14 @@ const projects: Project[] = [
     stack: ["NestJS", "React", "MongoDB", "JWT", "RBAC"],
     link: "https://www.rangeeladhaba.in/",
   },
+  {
+    index: "003",
+    title: "Amazeballs — Informational Web Platform",
+    description:
+      "Designed and shipped a public-facing informational website with a clean, content-driven layout, responsive sections, and SEO-friendly structure. Built with a fast static-rendering pipeline for low TTFB and optimized asset delivery, ensuring smooth performance across devices.",
+    stack: ["Next.js", "React", "Tailwind CSS", "SEO", "Responsive UI"],
+    link: "https://amazeballs.in/",
+  },
 ];
 
 export function Projects() {

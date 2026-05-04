@@ -1,106 +1,295 @@
 import PDFDocument from "pdfkit";
 import fs from "fs";
 
-const doc = new PDFDocument({ size: "A4", margin: 50 });
+const PRIMARY = "#000000";
+const RULE = "#94a3b8";
+
+const PAGE_MARGIN = 38;
+const LEFT = PAGE_MARGIN;
+const PAGE_WIDTH = 595.28;
+const RIGHT = PAGE_WIDTH - PAGE_MARGIN;
+const CONTENT_WIDTH = RIGHT - LEFT;
+
+const BODY = 9.6;
+const LINE_GAP = 1.2;
+const BULLET_GAP = 1.0;
+
+const doc = new PDFDocument({
+  size: "A4",
+  margin: PAGE_MARGIN,
+  info: {
+    Title: "Vansh Jaiswal - Backend Engineer Resume",
+    Author: "Vansh Jaiswal",
+    Subject:
+      "Backend Engineer Resume - Node.js, NestJS, Spring Boot, Microservices, REST APIs, MongoDB, MySQL, Docker, JWT, OAuth, WebSockets",
+    Keywords:
+      "Backend Engineer, Backend Developer, Software Engineer, Node.js, NestJS, Spring Boot, Java, JavaScript, TypeScript, Python, Microservices, REST APIs, RESTful APIs, MongoDB, MySQL, SQL, Docker, JWT, OAuth, OAuth 2.0, RBAC, WebSockets, FastAPI, Express, Spring Data JPA, Spring Security, CI/CD, Git, System Design, API Design, Event-Driven Architecture, Distributed Systems, Scalability, Full Stack Developer",
+  },
+});
 doc.pipe(fs.createWriteStream("public/Vansh_Jaiswal_Resume.pdf"));
 
-const PRIMARY = "#0f172a";
-const ACCENT = "#10b981";
-const MUTED = "#64748b";
-const RULE = "#e2e8f0";
+function sectionTitle(t) {
+  doc.moveDown(0.35);
+  doc
+    .font("Helvetica-Bold")
+    .fontSize(10.5)
+    .fillColor(PRIMARY)
+    .text(t, LEFT, doc.y, { characterSpacing: 0.8 });
+  const y = doc.y + 1.5;
+  doc
+    .moveTo(LEFT, y)
+    .lineTo(RIGHT, y)
+    .strokeColor(RULE)
+    .lineWidth(0.6)
+    .stroke();
+  doc.moveDown(0.3);
+}
 
-function h1(t) {
-  doc.font("Helvetica-Bold").fontSize(22).fillColor(PRIMARY).text(t);
+function roleHeader(title, right) {
+  const startY = doc.y;
+  doc
+    .font("Helvetica-Bold")
+    .fontSize(10.2)
+    .fillColor(PRIMARY)
+    .text(title, LEFT, startY, { width: CONTENT_WIDTH * 0.72 });
+  const leftEndY = doc.y;
+  doc
+    .font("Helvetica")
+    .fontSize(9.7)
+    .fillColor(PRIMARY)
+    .text(right, LEFT + CONTENT_WIDTH * 0.72, startY, {
+      width: CONTENT_WIDTH * 0.28,
+      align: "right",
+    });
+  doc.y = Math.max(leftEndY, doc.y);
+  doc.moveDown(0.15);
 }
-function h2(t) {
-  doc.moveDown(0.6);
-  doc.font("Helvetica-Bold").fontSize(11).fillColor(ACCENT).text(t.toUpperCase(), { characterSpacing: 1.2 });
-  const y = doc.y + 2;
-  doc.moveTo(50, y).lineTo(545, y).strokeColor(RULE).lineWidth(0.8).stroke();
-  doc.moveDown(0.4);
+
+function projectHeader(title, stack) {
+  doc
+    .font("Helvetica-Bold")
+    .fontSize(10)
+    .fillColor(PRIMARY)
+    .text(title, LEFT, doc.y, { continued: !!stack });
+  if (stack) {
+    doc
+      .font("Helvetica-Oblique")
+      .fontSize(9.5)
+      .fillColor(PRIMARY)
+      .text(`  -  ${stack}`, { lineGap: LINE_GAP });
+  }
+  doc.moveDown(0.1);
 }
-function h3(t, right) {
-  doc.font("Helvetica-Bold").fontSize(11).fillColor(PRIMARY).text(t, { continued: !!right });
-  if (right) doc.font("Helvetica").fillColor(MUTED).text(`  —  ${right}`);
-}
-function body(t) {
-  doc.font("Helvetica").fontSize(10).fillColor(PRIMARY).text(t, { lineGap: 2 });
-}
+
 function bullet(t) {
-  doc.font("Helvetica").fontSize(10).fillColor(PRIMARY).text(`•  ${t}`, { indent: 8, lineGap: 2 });
+  const x = LEFT + 13;
+  const startY = doc.y;
+  doc
+    .font("Helvetica")
+    .fontSize(BODY)
+    .fillColor(PRIMARY)
+    .text("•", LEFT + 3, startY);
+  doc.text(t, x, startY, {
+    width: CONTENT_WIDTH - 15,
+    lineGap: BULLET_GAP,
+    align: "left",
+  });
+  doc.moveDown(0.05);
 }
 
-// Header
-h1("Vansh Jaiswal");
-doc.font("Helvetica").fontSize(11).fillColor(ACCENT).text("Backend Developer (Node.js)");
-doc.moveDown(0.3);
-doc.font("Helvetica").fontSize(9).fillColor(MUTED)
-  .text("jaiswalvansh96@gmail.com  •  +91 7249782852  •  Nagpur, Maharashtra  •  github.com/Vanshgg33");
+function skillLine(label, value) {
+  doc
+    .font("Helvetica-Bold")
+    .fontSize(BODY)
+    .fillColor(PRIMARY)
+    .text(`${label}:  `, LEFT, doc.y, {
+      continued: true,
+      width: CONTENT_WIDTH,
+    });
+  doc
+    .font("Helvetica")
+    .fillColor(PRIMARY)
+    .text(value, { width: CONTENT_WIDTH, lineGap: LINE_GAP });
+  doc.moveDown(0.1);
+}
 
-h2("Professional Summary");
-body("Backend Developer with experience designing scalable microservices using Node.js and NestJS, specializing in REST API development, authentication systems (JWT/OAuth), and high-performance backend architectures. Experienced in Dockerized deployments, data pipelines, and AI-integrated systems.");
+// ===== Header =====
+doc
+  .font("Helvetica-Bold")
+  .fontSize(20)
+  .fillColor(PRIMARY)
+  .text("VANSH JAISWAL", LEFT, PAGE_MARGIN, {
+    width: CONTENT_WIDTH,
+    align: "center",
+    characterSpacing: 1.2,
+  });
+doc
+  .font("Helvetica")
+  .fontSize(10.2)
+  .fillColor(PRIMARY)
+  .text(
+    "Backend Engineer | Node.js | NestJS | Spring Boot | Microservices | REST APIs",
+    LEFT,
+    doc.y + 3,
+    { width: CONTENT_WIDTH, align: "center" }
+  );
+const LINK_COLOR = "#0b5fff";
+const CONTACT_FONT_SIZE = 9.3;
+const CONTACT_LINE_HEIGHT = 12;
 
-h2("Technical Skills");
-body("Backend: Node.js, NestJS, REST APIs, JWT, OAuth, Microservices");
-body("Databases: MySQL, MongoDB, SQL");
-body("Frontend: Angular, HTML, CSS");
-body("Tools: Docker, Git, IntelliJ IDEA, Eclipse");
-body("Languages: JavaScript, TypeScript, Java");
+function contactLine(parts, y) {
+  doc.font("Helvetica").fontSize(CONTACT_FONT_SIZE);
+  const sep = "  |  ";
+  const sepWidth = doc.widthOfString(sep);
+  const widths = parts.map((p) => doc.widthOfString(p.text));
+  const totalWidth =
+    widths.reduce((a, b) => a + b, 0) + sepWidth * (parts.length - 1);
+  let x = LEFT + (CONTENT_WIDTH - totalWidth) / 2;
+  parts.forEach((p, idx) => {
+    if (p.link) {
+      doc.fillColor(LINK_COLOR).text(p.text, x, y, { lineBreak: false });
+      const h = doc.currentLineHeight();
+      const underlineY = y + CONTACT_FONT_SIZE + 0.5;
+      doc
+        .moveTo(x, underlineY)
+        .lineTo(x + widths[idx], underlineY)
+        .strokeColor(LINK_COLOR)
+        .lineWidth(0.4)
+        .stroke();
+      doc.link(x, y, widths[idx], h, p.link);
+    } else {
+      doc.fillColor(PRIMARY).text(p.text, x, y, { lineBreak: false });
+    }
+    x += widths[idx];
+    if (idx < parts.length - 1) {
+      doc.fillColor(PRIMARY).text(sep, x, y, { lineBreak: false });
+      x += sepWidth;
+    }
+  });
+  doc.fillColor(PRIMARY);
+}
 
-h2("Experience");
-h3("Backend Developer (Node.js)", "Arobuz Growth Agency  •  Current");
-doc.moveDown(0.2);
+const line1Y = doc.y + 4;
+contactLine(
+  [
+    { text: "jaiswalvansh96@gmail.com", link: "mailto:jaiswalvansh96@gmail.com" },
+    { text: "+91 7249782852", link: "tel:+917249782852" },
+    { text: "Bangalore, Karnataka, India" },
+  ],
+  line1Y
+);
+
+const line2Y = line1Y + CONTACT_LINE_HEIGHT;
+contactLine(
+  [
+    { text: "linkedin.com/in/vansh-jaiswal", link: "https://linkedin.com/in/vansh-jaiswal" },
+    { text: "github.com/Vanshgg33", link: "https://github.com/Vanshgg33" },
+    { text: "vansh-s-backend-hub.vercel.app", link: "https://vansh-s-backend-hub.vercel.app" },
+  ],
+  line2Y
+);
+doc.y = line2Y + CONTACT_LINE_HEIGHT;
+
+// ===== Professional Summary =====
+sectionTitle("PROFESSIONAL SUMMARY");
+doc
+  .font("Helvetica")
+  .fontSize(BODY)
+  .fillColor(PRIMARY)
+  .text(
+    "Backend Engineer with 1+ year of production experience designing scalable microservices, REST APIs, and AI-integrated SaaS platforms across 5+ client products. Proficient in Node.js, NestJS, Spring Boot, Java, TypeScript, and Python, with deep work in MongoDB, MySQL, Docker, JWT, OAuth 2.0, and WebSockets. Reduced operational turnaround by 60% via Gemini AI automation and eliminated unauthorized-access incidents through hardened authentication.",
+    LEFT,
+    doc.y,
+    { width: CONTENT_WIDTH, lineGap: LINE_GAP, align: "left" }
+  );
+
+// ===== Technical Skills =====
+sectionTitle("TECHNICAL SKILLS");
+skillLine(
+  "Languages",
+  "JavaScript (ES2022+), TypeScript, Java, Python, SQL"
+);
+skillLine(
+  "Backend",
+  "Node.js, NestJS, Spring Boot, Spring Data JPA, Spring Security, Express.js, FastAPI, REST APIs, Microservices, WebSockets, Event-Driven Architecture"
+);
+skillLine(
+  "Databases",
+  "MongoDB, MySQL, SQL, NoSQL, Schema Design, Query Optimization"
+);
+skillLine(
+  "Auth & Security",
+  "JWT, OAuth 2.0, RBAC (Role-Based Access Control), Spring Security, Webhook Verification"
+);
+skillLine(
+  "DevOps & Tools",
+  "Docker, Git, GitHub, CI/CD, Vercel, Postman, Linux"
+);
+skillLine(
+  "Integrations",
+  "Google APIs, Meta Graph API, Razorpay, Gemini AI, Power BI, Playwright, crawl4ai"
+);
+skillLine(
+  "Frontend",
+  "React, Next.js, Angular, Tailwind CSS, HTML5, CSS3"
+);
+
+// ===== Experience =====
+sectionTitle("PROFESSIONAL EXPERIENCE");
+roleHeader(
+  "Backend Engineer (Node.js, NestJS) - Arobuz Growth Agency",
+  "Oct 2025 - Present"
+);
 [
-  "Designed and developed an end-to-end CRM backend system managing users, leads, pipelines, and interaction history, with scalable REST APIs and RBAC; integrated AI-powered proposal generation using Gemini APIs and a rich text editor for dynamic content creation.",
-  "Built a high-performance web scraping engine capable of extracting data from multiple platforms, including social media sources, using API integrations and structured data pipelines.",
-  "Engineered a social media data aggregation system that collects and normalizes profiles, posts, and engagement signals into a unified schema for analytics.",
-  "Developed a Twitter trend analysis engine to identify emerging topics, hashtags, and engagement patterns through optimized APIs.",
-  "Architected and shipped backend services in Node.js and NestJS for SaaS products, exposing 10+ RESTful APIs across authentication, user management, and core workflows.",
-  "Implemented role-based access control (RBAC) and JWT/OAuth authentication across services.",
-  "Containerized services using Docker within a microservices architecture.",
+  "Architected an end-to-end CRM backend in NestJS using a microservices architecture for lead management, sales pipelines, and role-based access via JWT and OAuth 2.0; integrated Gemini AI to automate proposal generation, reducing turnaround by 60% and saving the operations team ~3 hours per day.",
+  "Engineered a production-grade multi-platform scraping engine (Twitter/X, LinkedIn, Instagram) with Playwright, Python, and crawl4ai, normalizing data into a unified MongoDB schema; sustained 500+ records per crawl with under 2% data loss.",
+  "Delivered a unified Ads Management Portal integrating Meta Graph API, Google APIs, LinkedIn, and Pinterest into a single Node.js REST API service; deployed to production and used daily across 3 client accounts.",
+  "Built an in-app ad-creative editor and a Google Meet-style video collaboration platform powered by WebSockets, eliminating recurring third-party SaaS costs and bringing unauthorized-access incidents to zero through hardened JWT and OAuth flows.",
 ].forEach(bullet);
 
-doc.moveDown(0.4);
-h3("Full Stack Developer Intern", "Resonit  •  Previous");
-doc.moveDown(0.2);
+doc.moveDown(0.15);
+roleHeader(
+  "Full Stack Developer Intern (Spring Boot, Java) - Resonit",
+  "Feb 2025 - Jul 2025"
+);
 [
-  "Developed and integrated REST APIs for authentication and user workflows.",
-  "Implemented JWT-based authentication systems, enhancing application security.",
-  "Contributed to backend feature development and API integration.",
+  "Built a production-grade e-commerce platform on Spring Boot, Java, and React with MySQL, implementing product catalog, cart, and order modules backed by RESTful APIs and Spring Data JPA.",
+  "Integrated the Razorpay payment gateway end-to-end, including checkout, webhook-based order confirmation, and failure/retry handling for reliable transaction state.",
+  "Designed REST APIs secured with JWT authentication and RBAC via Spring Security across customer and admin roles, with optimized MySQL queries and indexing for low-latency response times.",
 ].forEach(bullet);
 
-h2("Projects");
-h3("WhatsApp Commerce Backend System (NestJS)");
-[
-  "Designed a WhatsApp-first commerce platform enabling users to browse products, place orders, and receive confirmations entirely through WhatsApp Business workflows.",
-  "Built conversational order flows (catalog browsing, cart creation, order placement, and status updates) integrated with WhatsApp Business APIs.",
-  "Developed backend services for order processing, inventory management, and customer interactions with real-time stock tracking and Meta Catalog sync.",
-  "Implemented RBAC for packer, biller, and delivery roles, supporting end-to-end fulfillment operations.",
-  "Created event-driven APIs for order lifecycle management (creation, confirmation, billing, dispatch) with webhook integrations for real-time notifications.",
-].forEach(bullet);
+// ===== Projects =====
+sectionTitle("PROJECTS");
+projectHeader(
+  "WhatsApp Commerce Backend System",
+  "NestJS, MongoDB, Meta Business API, REST APIs, Webhooks, Power BI"
+);
+bullet(
+  "Designed an event-driven order management backend in NestJS automating the full lifecycle (creation, billing, dispatch) via a WhatsApp bot; sustains 200+ order events per day under RBAC-secured REST APIs, with Power BI dashboards for real-time sales and SLA reporting."
+);
 
-doc.moveDown(0.3);
-h3("Restaurant Management & Ordering System");
-[
-  "Backend APIs for order processing, menu management, and admin operations.",
-  "KOT (Kitchen Order Ticket) system for kitchen workflows.",
-].forEach(bullet);
+projectHeader(
+  "Multi-Platform Social Media Crawler",
+  "Python, FastAPI, Playwright, crawl4ai, Next.js"
+);
+bullet(
+  "Engineered a GraphQL-intercepting crawler for Twitter/X, LinkedIn, and Instagram on a FastAPI backend with a Next.js operator dashboard; sub-3-second profile extraction and ~50% reduction in manual data review."
+);
 
-doc.moveDown(0.3);
-h3("Card Management System");
-bullet("Secure backend with Spring Boot, REST APIs, and MySQL integration.");
+projectHeader(
+  "Secure Card Operations Backend",
+  "Spring Boot, Java, MySQL, REST APIs, Spring Security, JWT"
+);
+bullet(
+  "Built a card operations service in Spring Boot enforcing role-based access and transactional integrity across 3 permission levels, with REST APIs secured by Spring Security and JWT, persisted via Spring Data JPA on MySQL."
+);
 
-doc.moveDown(0.3);
-h3("Unified Admin Dashboard (Commerce & CRM)");
-[
-  "Developed a unified frontend dashboard for managing orders, inventory, and customer interactions across the platform.",
-  "Built real-time order monitoring and stock management interfaces for operational efficiency.",
-  "Implemented a chat system to communicate with users, view conversation history, and access previous orders within a single interface.",
-  "Integrated backend APIs to provide a centralized view of customer data, order history, and engagement insights.",
-].forEach(bullet);
-
-h2("Education");
-h3("Bachelor of Computer Applications (BCA)", "Manipal University Jaipur  •  Expected 2026");
+// ===== Education =====
+sectionTitle("EDUCATION");
+roleHeader(
+  "Bachelor of Computer Applications (BCA) - Manipal University Jaipur",
+  "Expected 2026"
+);
 
 doc.end();
 console.log("Generated public/Vansh_Jaiswal_Resume.pdf");

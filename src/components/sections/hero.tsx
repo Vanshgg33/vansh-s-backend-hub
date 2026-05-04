@@ -52,9 +52,9 @@ export function Hero() {
                 transition: "transform 200ms ease-out",
               }}
             >
-              <h1 className="font-display text-[clamp(3rem,9vw,7rem)] font-bold leading-[0.92] tracking-tighter">
-                <span className="block text-foreground/95">vansh</span>
-                <span className="block text-gradient">jaiswal.</span>
+              <h1 className="font-display text-[clamp(3rem,9vw,7rem)] font-bold leading-[0.95] tracking-tighter">
+                <span className="block text-foreground/95">Vansh</span>
+                <span className="block text-gradient">Jaiswal.</span>
               </h1>
 
               <div className="mt-5 flex items-center gap-3 font-mono text-sm">
@@ -131,8 +131,8 @@ export function Hero() {
           style={{ transform: `translate3d(${tx * 0.1}px, 0, 6px)` }}
         >
           {[
-            { value: "10+", label: "rest endpoints shipped" },
-            { value: "2 yrs", label: "production node.js" },
+            { value: "50+", label: "rest endpoints shipped" },
+            { value: "1 yr", label: "production node.js" },
             { value: "5+", label: "microservices deployed" },
             { value: "99.9%", label: "auth uptime" },
           ].map((stat) => (

@@ -23,12 +23,16 @@ const jobs = [
   {
     role: "Full Stack Developer Intern",
     company: "Resonit",
-    period: "previous",
+    period: "feb 2025 — jul 2025",
     tag: "shipped",
     points: [
-      "Developed RESTful APIs for user authentication and registration workflows, securing endpoints with JWT-based authentication.",
-      "Contributed to backend feature development and API integration.",
-      "Assisted in connecting backend services with frontend components.",
+      "Built a production-grade e-commerce platform end-to-end on Spring Boot, Java, and React with MySQL, shipping product catalog, cart, and order management modules backed by RESTful APIs and Spring Data JPA.",
+      "Designed and exposed REST APIs for user authentication and registration workflows, securing endpoints with JWT and enforcing role-based access control (RBAC) via Spring Security across customer and admin roles.",
+      "Integrated the Razorpay payment gateway end-to-end — checkout initiation, webhook-based order confirmation, and failure/retry handling — ensuring reliable transaction state across all order flows.",
+      "Modeled MySQL schemas for products, carts, orders, and payments with proper foreign-key relationships, and tuned queries and indexes to keep API response times low under concurrent customer sessions.",
+      "Built and consumed REST endpoints from the React frontend, wiring up cart state, order tracking, and admin dashboards against the Spring Boot backend.",
+      "Worked alongside design, frontend, and product to translate business requirements into clean, well-documented backend contracts and shipped features through a full code-review and PR workflow on Git.",
+      "Investigated and fixed production-grade bugs across auth, cart, and payment flows, hardening edge cases around webhook idempotency and partial-failure recovery.",
     ],
   },
 ];
