@@ -78,7 +78,7 @@ export function Contact() {
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-mono text-muted-foreground">
                 <span className="inline-flex items-center gap-2">
-                  <MapPin className="size-3.5 text-primary" /> nagpur, maharashtra
+                  <MapPin className="size-3.5 text-primary" /> bangalore, karnataka
                 </span>
                 <span className="text-border">·</span>
                 <span className="inline-flex items-center gap-2 tabular-nums">

@@ -128,7 +128,7 @@ doc
   .fontSize(10.2)
   .fillColor(PRIMARY)
   .text(
-    "Backend Engineer | Node.js | NestJS | Spring Boot | Microservices | REST APIs",
+    "Backend Engineer  |  Node.js  ·  NestJS  ·  Spring Boot  ·  Microservices  ·  REST APIs",
     LEFT,
     doc.y + 3,
     { width: CONTENT_WIDTH, align: "center" }
@@ -197,7 +197,7 @@ doc
   .fontSize(BODY)
   .fillColor(PRIMARY)
   .text(
-    "Backend Engineer with 1+ year of production experience designing scalable microservices, REST APIs, and AI-integrated SaaS platforms across 5+ client products. Proficient in Node.js, NestJS, Spring Boot, Java, TypeScript, and Python, with deep work in MongoDB, MySQL, Docker, JWT, OAuth 2.0, and WebSockets. Reduced operational turnaround by 60% via Gemini AI automation and eliminated unauthorized-access incidents through hardened authentication.",
+    "Results-driven Backend Engineer with 1+ years of production experience designing scalable microservices, RESTful APIs, and AI-integrated SaaS platforms across 5+ client products. Proficient in Node.js, NestJS, Spring Boot, Java, TypeScript, and Python, with deep expertise in MongoDB, MySQL, Docker, JWT, OAuth 2.0, and WebSockets. Reduced operational turnaround by 60% through Gemini AI automation and eliminated unauthorized access incidents via hardened authentication.",
     LEFT,
     doc.y,
     { width: CONTENT_WIDTH, lineGap: LINE_GAP, align: "left" }
@@ -233,6 +233,10 @@ skillLine(
   "Frontend",
   "React, Next.js, Angular, Tailwind CSS, HTML5, CSS3"
 );
+skillLine(
+  "Soft Skills",
+  "Cross-functional Collaboration, Technical Communication, Problem-Solving, Ownership, Adaptability"
+);
 
 // ===== Experience =====
 sectionTitle("PROFESSIONAL EXPERIENCE");
@@ -241,10 +245,11 @@ roleHeader(
   "Oct 2025 - Present"
 );
 [
-  "Architected an end-to-end CRM backend in NestJS using a microservices architecture for lead management, sales pipelines, and role-based access via JWT and OAuth 2.0; integrated Gemini AI to automate proposal generation, reducing turnaround by 60% and saving the operations team ~3 hours per day.",
+  "Architected an end-to-end CRM backend in NestJS using a microservices architecture for lead management, sales pipelines, and role-based access via JWT and OAuth 2.0; integrated Gemini AI to automate proposal generation, reducing turnaround by 60% and saving the operations team approximately 3 hours per day.",
   "Engineered a production-grade multi-platform scraping engine (Twitter/X, LinkedIn, Instagram) with Playwright, Python, and crawl4ai, normalizing data into a unified MongoDB schema; sustained 500+ records per crawl with under 2% data loss.",
   "Delivered a unified Ads Management Portal integrating Meta Graph API, Google APIs, LinkedIn, and Pinterest into a single Node.js REST API service; deployed to production and used daily across 3 client accounts.",
-  "Built an in-app ad-creative editor and a Google Meet-style video collaboration platform powered by WebSockets, eliminating recurring third-party SaaS costs and bringing unauthorized-access incidents to zero through hardened JWT and OAuth flows.",
+  "Launched an in-app ad-creative editor and a Google Meet-style video collaboration platform powered by WebSockets, eliminating recurring third-party SaaS costs and reducing unauthorized access incidents to zero through hardened JWT and OAuth flows.",
+  "Spearheaded development of an in-house project management tool with task tracking, team assignment, and deadline workflows, replacing paid external subscriptions and streamlining cross-team delivery.",
 ].forEach(bullet);
 
 doc.moveDown(0.15);
@@ -253,9 +258,9 @@ roleHeader(
   "Feb 2025 - Jul 2025"
 );
 [
-  "Built a production-grade e-commerce platform on Spring Boot, Java, and React with MySQL, implementing product catalog, cart, and order modules backed by RESTful APIs and Spring Data JPA.",
-  "Integrated the Razorpay payment gateway end-to-end, including checkout, webhook-based order confirmation, and failure/retry handling for reliable transaction state.",
-  "Designed REST APIs secured with JWT authentication and RBAC via Spring Security across customer and admin roles, with optimized MySQL queries and indexing for low-latency response times.",
+  "Developed a production-grade e-commerce platform using Spring Boot, Java, and React on MySQL, implementing product catalog, cart, and order modules backed by RESTful APIs and Spring Data JPA.",
+  "Integrated the Razorpay payment gateway end-to-end, covering checkout initiation, webhook-based order confirmation, and failure/retry handling for reliable transaction state.",
+  "Implemented REST APIs secured with JWT authentication and RBAC via Spring Security across customer and admin roles, with optimized MySQL queries and indexes for low-latency response times.",
 ].forEach(bullet);
 
 // ===== Projects =====
@@ -265,7 +270,7 @@ projectHeader(
   "NestJS, MongoDB, Meta Business API, REST APIs, Webhooks, Power BI"
 );
 bullet(
-  "Designed an event-driven order management backend in NestJS automating the full lifecycle (creation, billing, dispatch) via a WhatsApp bot; sustains 200+ order events per day under RBAC-secured REST APIs, with Power BI dashboards for real-time sales and SLA reporting."
+  "Automated the full order management lifecycle (creation, billing, dispatch) via a WhatsApp bot using event-driven NestJS APIs; sustains 200+ order events per day under RBAC-secured REST endpoints, with Power BI dashboards for real-time sales and SLA reporting."
 );
 
 projectHeader(
@@ -273,7 +278,7 @@ projectHeader(
   "Python, FastAPI, Playwright, crawl4ai, Next.js"
 );
 bullet(
-  "Engineered a GraphQL-intercepting crawler for Twitter/X, LinkedIn, and Instagram on a FastAPI backend with a Next.js operator dashboard; sub-3-second profile extraction and ~50% reduction in manual data review."
+  "Engineered a GraphQL-intercepting crawler for Twitter/X, LinkedIn, and Instagram on a FastAPI backend with a Next.js operator dashboard, achieving sub-3-second profile extraction and an approximate 50% reduction in manual data review."
 );
 
 projectHeader(
@@ -281,7 +286,7 @@ projectHeader(
   "Spring Boot, Java, MySQL, REST APIs, Spring Security, JWT"
 );
 bullet(
-  "Built a card operations service in Spring Boot enforcing role-based access and transactional integrity across 3 permission levels, with REST APIs secured by Spring Security and JWT, persisted via Spring Data JPA on MySQL."
+  "Implemented a card operations service in Spring Boot enforcing role-based access and transactional integrity across 3 permission levels, with REST APIs secured by Spring Security and JWT, persisted via Spring Data JPA on MySQL."
 );
 
 // ===== Education =====

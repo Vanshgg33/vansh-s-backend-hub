@@ -114,7 +114,7 @@ export function Hero() {
                 </span>
               </a>
               <span className="inline-flex items-center gap-2">
-                <MapPin className="size-3.5 text-primary" /> nagpur, in
+                <MapPin className="size-3.5 text-primary" /> bangalore, in
               </span>
             </div>
           </div>
