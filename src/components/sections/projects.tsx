@@ -36,6 +36,14 @@ const projects: Project[] = [
     stack: ["Next.js", "React", "Tailwind CSS", "SEO", "Responsive UI"],
     link: "https://amazeballs.in/",
   },
+  {
+    index: "004",
+    title: "Multi-Platform Social Media Crawler",
+    description:
+      "GraphQL-intercepting crawler for Twitter/X, LinkedIn, and Instagram built on FastAPI, paired with a Next.js operator dashboard. Delivers sub-3-second profile extraction and a 50% reduction in manual data review time. Modular scraper architecture with pluggable platform adapters makes it extensible to new social networks with minimal code changes and zero disruption to existing pipelines. Supports live Twitter trend search and discovery directly from the dashboard.",
+    stack: ["Python", "FastAPI", "Playwright", "crawl4ai", "Next.js"],
+    link: "http://20.40.58.86:3700/",
+  },
 ];
 
 export function Projects() {
